@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>speed limit & demerit points</title>
+</head>
+<body>
+  <script>
+    function calculateDemeritPoints() {try 
+    { let speed = parseFloat(prompt("Enter car speed in km/hr:"));
+  if (!isNaN(speed)){
+    const speedLimit = 70;
+    // const demeritPointsPer5KmOver = 1;
+    const maxDemeritPoints = 12;
+    
+    if (speed <= speedLimit) {alert("okey")}
+    else {const demeritPointsPer5KmOver = Math.floor((speed - speedLimit) / 5);
+    if(demeritPointsPer5KmOver > maxDemeritPoints){alert("lincense suspended");}
+
+  else {alert(`points : ${demeritPointsPer5KmOver}`)}
+  }}
+
+  else {alert("invalid input;enter valid speed.");}}
+
+  catch (error) {alert("an error occured ;try again");}}
+
+  calculateDemeritPoints()
+  </script>
+</body>
+
+
+
+
+
+
+
+
+</html>
