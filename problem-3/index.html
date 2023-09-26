@@ -44,11 +44,15 @@
                     // Calculate net salary
                     let netSalary = grossSalary - paye - nhifDeduction - nssfDeduction;
 
-                    
+                    alert(`Gross Salary: ${grossSalary} `) 
                  }
                 } 
-            }
+                catch (error) {
+                alert("An error occurred. Please try again.");
+             };
 
+        
+            }
         // Call the function to calculate and display net salary
         calculateNetSalary();
     </script>
