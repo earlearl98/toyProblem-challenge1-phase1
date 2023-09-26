@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Net Salary Calculator</title>
+</head>
+<body>
+    <script>
+        function calculateNetSalary() {
+            try {
+                // Prompt the user
+                let basicSalary = parseFloat(prompt("Enter Basic Salary:"));
+                let benefits = parseFloat(prompt("Enter Benefits:"));
+
+                if (!isNaN(basicSalary) && !isNaN(benefits)) {
+                    // Tax rates
+                    const taxRates = [
+                        { min: 0, max: 24000, rate: 0.1 },
+                        { min: 24001, max: 32333, rate: 0.25 },
+                        { min: 32334, max: 500000, rate: 0.3 },
+                        { min: 500001, max: 800000, rate: 0.325 },
+                        { min: 800001, max: Infinity, rate: 0.35 }
+                    ];
+
+                    // Calculate gross salary
+                    let grossSalary = basicSalary + benefits;
+
+                    // Calculate PAYE (Tax)
+                    let taxableIncome = grossSalary;
+                    let paye = 0;
+                    for (const rate of taxRates) {
+                        if (taxableIncome > rate.max) {
+                            paye += (rate.max - rate.min + 1) * rate;
+                            taxableIncome -= (rate.max - rate.min + 1);
+                        } else {
+                            paye += taxableIncome * rate;
+                            break;
+                        }
+                    }
+
+                    // NHIF and NSSF values
+                    const nhifDeduction = 1700; 
+                    const nssfDeduction = Math.min(0.06 * grossSalary); 
+
+                    // Calculate net salary
+                    let netSalary = grossSalary - paye - nhifDeduction - nssfDeduction;
+
+                    
+                 }
+                } 
+            }
+
+        // Call the function to calculate and display net salary
+        calculateNetSalary();
+    </script>
+</body>
+</html>
